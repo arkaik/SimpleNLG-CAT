@@ -140,6 +140,9 @@ public abstract class XMLLexicon extends Lexicon {
         super(language);
         String resourceName;
         switch (this.getLanguage()) {
+        	case CATALAN:
+        		resourceName = "default-catalan-lexicon.xml";
+                break;
             case SPANISH:
                 resourceName = "default-spanish-lexicon.xml";
                 break;

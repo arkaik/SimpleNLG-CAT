@@ -28,7 +28,7 @@ package simplenlg.framework;
  */
 public enum Language {
 
-    ENGLISH("en"), SPANISH("es");
+    ENGLISH("en"), SPANISH("es"), CATALAN("ca");
 
     final public static Language DEFAULT_LANGUAGE = ENGLISH;
     final public String code;

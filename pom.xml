@@ -3,8 +3,8 @@
   	<modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>es.usc.citius</groupId>
-    <artifactId>SimpleNLG-es</artifactId>
+    <groupId>edu.upc</groupId>
+    <artifactId>SimpleNLG-cat</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	
