@@ -21,6 +21,7 @@ package simplenlg.realiser.spanish;
 import simplenlg.format.english.TextFormatter;
 import simplenlg.lexicon.Lexicon;
 import simplenlg.morphology.spanish.MorphologyProcessor;
+import simplenlg.morphophonology.spanish.MorphophonologyProcessor;
 import simplenlg.orthography.spanish.OrthographyProcessor;
 import simplenlg.syntax.spanish.SyntaxProcessor;
 
@@ -52,6 +53,8 @@ public class Realiser extends simplenlg.realiser.Realiser {
     public void initialise() {
         this.morphology = new MorphologyProcessor();
         this.morphology.initialise();
+        this.morphophonology = new MorphophonologyProcessor();
+        this.morphophonology.initialise();
         this.orthography = new OrthographyProcessor();
         this.orthography.initialise();
         this.syntax = new SyntaxProcessor();

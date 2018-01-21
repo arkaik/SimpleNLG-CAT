@@ -65,23 +65,23 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
     private static final String[][][] PRONOUNS = {
             {
                     {"jo", "tu", "ell", "ella", "allò"},
-                    {"me", "te", "lo", "la", "lo"},
+                    {"em", "et", "el", "la", "ho"},
                     {"em", "et", "es", "es", "es"},
-                    {"mío", "tuyo", "suyo", "suya", "suyo", "míos", "tuyos", "suyos", "suyas", "suyos"},
+                    {"meu", "teu", "seu", "seva", "seuo", "meus", "teus", "seus", "seves", "seus"},
                     {"mi", "tu", "su", "su", "su", "mis", "tus", "sus", "sus", "sus"},
                     {"mi", "tu", "ell", "ella", "allò"}
             },
             {
                     {"nosaltres", "vosaltres", "ells", "elles", "ells"},
-                    {"nos", "os", "los", "las", "los"},
+                    {"ens", "us", "els", "les", "els"},
                     {"nosotros", "vosotros", "ellos", "ellas", "ellos"},
                     {"nuestro", "vuestro", "suyo", "suya", "suyo", "nuestros", "vuestros", "suyos", "suyas", "suyos"},
                     {"nuestro", "vuestro", "suyo", "suya", "suyo", "nuestros", "vuestros", "suyos", "suyas", "suyos"},
                     {"nosotros", "vosotros", "ellos", "ellas", "ellos"}
             }};
 
-    private static final String[] WH_PRONOUNS = {"quien", "quién", "que", "qué", "cual", "cuál", "donde", "dónde",
-            "porque", "porqué", "por qué", "com", "cómo", "cuanto", "cuánto", "cuanta", "cuánta", "cuantos", "cuántos", "cuantas", "cuántas"};
+    private static final String[] WH_PRONOUNS = {"qui", "quién", "que", "qué", "qual", "cuál", "on", "dónde",
+            "perque", "perquè", "per qué", "com", "cómo", "quant", "cuánto", "quanta", "cuánta", "quants", "cuántos", "quantes", "cuántas"};
 
     /**
      * This method performs the morphology for nouns.
@@ -154,7 +154,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
             realisation = getBaseForm(element, baseWord);
         }
 
-        StringElement realisedElement = new StringElement(realisation);
+        StringElement realisedElement = new StringElement(realisation, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
     }
@@ -672,7 +672,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
                 }
         }
 //        }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
     }
@@ -1381,7 +1381,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
             }
         }
 
-        StringElement realisedElement = new StringElement(realisation);
+        StringElement realisedElement = new StringElement(realisation, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
 
@@ -1579,7 +1579,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
         } else {
             realised = baseForm;
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
@@ -1686,7 +1686,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
                 realised = element.getBaseForm();
             }
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
 
@@ -1765,12 +1765,18 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
                 break;
         }
 
-        StringElement realisedElement = new StringElement(realisation);
+        StringElement realisedElement = new StringElement(realisation, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
     }
 
     public void doDeterminerMorphology(NLGElement determiner, String realisation) {
-
+    	
+    }
+    
+    private boolean beginsWithVowel(String st) {
+    	final String vowels_regex =
+    			"a|A|ä|Ä|à|À|â|Â|e|E|ë|Ë|é|É|è|È|ê|Ê|i|I|ï|Ï|î|Î|o|O|ô|Ô|u|U|û|Û|ü|Ü|ù|Ù";
+    	return ( st.matches("\\A(" + vowels_regex + "|h|H).*"));
     }
 }

@@ -188,7 +188,7 @@ public class MorphologyProcessor extends simplenlg.morphology.MorphologyProcesso
     protected NLGElement doMorphology(InflectedWordElement element) {
         NLGElement realisedElement = null;
         if (element.getFeatureAsBoolean(InternalFeature.NON_MORPH).booleanValue()) {
-            realisedElement = new StringElement(element.getBaseForm());
+            realisedElement = new StringElement(element.getBaseForm(), element);
             realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                     element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
 

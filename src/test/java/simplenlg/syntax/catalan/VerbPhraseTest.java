@@ -61,24 +61,24 @@ public class VerbPhraseTest extends SimpleNLG4Test {
      */
     @Test
     public void testVerbParticle() {
-        VPPhraseSpec v = this.phraseFactory.createVerbPhrase("caer"); //$NON-NLS-1$
+        VPPhraseSpec v = this.phraseFactory.createVerbPhrase("caure"); //$NON-NLS-1$
 
 //		assertEquals(
 //				"down", v.getFeatureAsString(Feature.PARTICLE)); //$NON-NLS-1$
 
         assertEquals(
-                "caer", ((WordElement) v.getVerb()).getBaseForm()); //$NON-NLS-1$
+                "caure", ((WordElement) v.getVerb()).getBaseForm()); //$NON-NLS-1$
 
         v.setFeature(Feature.TENSE, Tense.PAST);
         v.setFeature(Feature.PERSON, Person.THIRD);
         v.setFeature(Feature.NUMBER, NumberAgreement.PLURAL);
 
         assertEquals(
-                "cayeron", this.realiser.realise(v).getRealisation()); //$NON-NLS-1$
+                "caigueren", this.realiser.realise(v).getRealisation()); //$NON-NLS-1$
 
         v.setFeature(Feature.FORM, Form.PAST_PARTICIPLE);
         assertEquals(
-                "caídos", this.realiser.realise(v).getRealisation()); //$NON-NLS-1$
+                "caiguts", this.realiser.realise(v).getRealisation()); //$NON-NLS-1$
     }
 
     /**
@@ -89,7 +89,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         // "fell down"
         this.fallDown.setFeature(Feature.TENSE, Tense.PAST);
         assertEquals(
-                "cayó", this.realiser.realise(this.fallDown).getRealisation()); //$NON-NLS-1$
+                "caigué", this.realiser.realise(this.fallDown).getRealisation()); //$NON-NLS-1$
 
     }
 
@@ -103,19 +103,19 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         this.fallDown.setFeature(Feature.TENSE, Tense.PAST);
         this.fallDown.setFeature(Feature.PERFECT, true);
 
-        assertEquals("ha caído", this.realiser.realise( //$NON-NLS-1$
+        assertEquals("ha caigut", this.realiser.realise( //$NON-NLS-1$
                 this.fallDown).getRealisation());
 
         // had been falling down
         this.fallDown.setFeature(Feature.PROGRESSIVE, true);
-        assertEquals("ha estado cayendo", this.realiser.realise( //$NON-NLS-1$
+        assertEquals("ha estat caiguent", this.realiser.realise( //$NON-NLS-1$
                 this.fallDown).getRealisation());
 
         // will have been kicked
         this.kick.setFeature(Feature.PASSIVE, true);
         this.kick.setFeature(Feature.PERFECT, true);
         this.kick.setFeature(Feature.TENSE, Tense.FUTURE);
-        assertEquals("habrá sido golpeado", this.realiser.realise( //$NON-NLS-1$
+        assertEquals("haurá estat colpejat", this.realiser.realise( //$NON-NLS-1$
                 this.kick).getRealisation());
 
         // will have been being kicked
@@ -213,15 +213,15 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         this.give.clearComplements();
         this.give.addComplement(this.dog);
         this.give.addComplement(this.woman);
-        assertEquals("da a la mujer el perro", this.realiser.realise( //$NON-NLS-1$
+        assertEquals("dóna a la dona el gos", this.realiser.realise( //$NON-NLS-1$
                 this.give).getRealisation());
 
         // add a few premodifiers and postmodifiers
-        this.give.addPreModifier("lentamente"); //$NON-NLS-1$
+        this.give.addPreModifier("lentament"); //$NON-NLS-1$
         this.give.addPostModifier(this.behindTheCurtain);
         this.give.addPostModifier(this.inTheRoom);
         assertEquals(
-                "lentamente da a la mujer el perro tras la cortina en la habitación", //$NON-NLS-1$
+                "lentament dóna a la dona el gos rere la cortina a la habitació", //$NON-NLS-1$
                 this.realiser.realise(this.give).getRealisation());
 
         // reset the arguments
@@ -237,7 +237,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         // they won't be coordinated
         this.give.setFeature(Feature.PASSIVE, false);
         assertEquals(
-                "lentamente da a la mujer y al niño el perro tras la cortina en la habitación", //$NON-NLS-1$
+                "lentament da a la mujer y al niño el perro tras la cortina en la habitación", //$NON-NLS-1$
                 this.realiser.realise(this.give).getRealisation());
 
         // set them to a coordinate instead
@@ -260,7 +260,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         // there were two before
 
         assertEquals(
-                "lentamente da a la mujer y al niño el perro tras la cortina en la habitación", //$NON-NLS-1$
+                "lentament da a la mujer y al niño el perro tras la cortina en la habitación", //$NON-NLS-1$
                 this.realiser.realise(this.give).getRealisation());
     }
 
@@ -276,15 +276,15 @@ public class VerbPhraseTest extends SimpleNLG4Test {
                 DiscourseFunction.INDIRECT_OBJECT);
         this.give.addComplement(this.dog);
         this.give.addComplement(this.woman);
-        assertEquals("da a la mujer el perro", this.realiser.realise( //$NON-NLS-1$
+        assertEquals("dóna a la dona el gos", this.realiser.realise( //$NON-NLS-1$
                 this.give).getRealisation());
 
         // add a few premodifiers and postmodifiers
-        this.give.addPreModifier("lentamente"); //$NON-NLS-1$
+        this.give.addPreModifier("lentament"); //$NON-NLS-1$
         this.give.addPostModifier(this.behindTheCurtain);
         this.give.addPostModifier(this.inTheRoom);
         assertEquals(
-                "lentamente da a la mujer el perro tras la cortina en la habitación", //$NON-NLS-1$
+                "lentament dóna a la dona el gos tras la cortina en la habitación", //$NON-NLS-1$
                 this.realiser.realise(this.give).getRealisation());
 
         // passivise: This should suppress "the dog"
@@ -294,7 +294,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         this.give.setFeature(Feature.PASSIVE, true);
 
         assertEquals(
-                "es lentamente dado a la mujer tras la cortina en la habitación", //$NON-NLS-1$
+                "es lentament donat a la dona rere la cortina a la habitación", //$NON-NLS-1$
                 this.realiser.realise(this.give).getRealisation());
     }
 
@@ -321,12 +321,12 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         s.setFeature(Feature.PROGRESSIVE, true);
         s.setFeature(Feature.TENSE, Tense.PAST);
         s.addPostModifier(this.inTheRoom);
-        assertEquals("John estuvo besando a Mary y a Susan en la habitación", //$NON-NLS-1$
+        assertEquals("John estigué besando a Mary y a Susan a la habitación", //$NON-NLS-1$
                 this.realiser.realise(s).getRealisation());
 
         // make the main VP past
         this.say.setFeature(Feature.TENSE, Tense.PAST);
-        assertEquals("dijo", this.realiser.realise(this.say) //$NON-NLS-1$
+        assertEquals("digué", this.realiser.realise(this.say) //$NON-NLS-1$
                 .getRealisation());
 
         // now add the sentence as complement of "say". Should make the sentence
@@ -334,7 +334,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         // note that sentential punctuation is suppressed
         this.say.addComplement(s);
         assertEquals(
-                "dijo que John estuvo besando a Mary y a Susan en la habitación", //$NON-NLS-1$
+                "digué que John estigué besant a Mary i a Susan a la habitació", //$NON-NLS-1$
                 this.realiser.realise(this.say).getRealisation());
 
         // add a postModifier to the main VP
@@ -342,7 +342,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         // [behind the curtain]]
         this.say.addPostModifier(this.behindTheCurtain);
         assertEquals(
-                "dijo que John estuvo besando a Mary y a Susan en la habitación tras la cortina", //$NON-NLS-1$
+                "dijo que John estuvo besando a Mary i a Susan a la habitación rere la cortina", //$NON-NLS-1$
                 this.realiser.realise(this.say).getRealisation());
 
         // create a new sentential complement
@@ -385,7 +385,7 @@ public class VerbPhraseTest extends SimpleNLG4Test {
         s.setFeature(Feature.TENSE, Tense.PAST);
         s.addPostModifier(this.inTheRoom);
         s2 = this.phraseFactory.createClause(this.phraseFactory
-                        .createNounPhrase("todo"), //$NON-NLS-1$
+                        .createNounPhrase("tot"), //$NON-NLS-1$
                 "estar", //$NON-NLS-1$
                 this.phraseFactory.createAdjectivePhrase("bien")); //$NON-NLS-1$
 

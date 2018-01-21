@@ -24,6 +24,7 @@ import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGModule;
 import simplenlg.lexicon.Lexicon;
 import simplenlg.morphology.MorphologyProcessor;
+import simplenlg.morphophonology.MorphophonologyProcessor;
 import simplenlg.orthography.OrthographyProcessor;
 import simplenlg.syntax.SyntaxProcessor;
 
@@ -36,6 +37,7 @@ import java.util.List;
 public abstract class Realiser extends NLGModule {
 
     protected MorphologyProcessor morphology;
+    protected MorphophonologyProcessor morphophonology;
     protected OrthographyProcessor orthography;
     protected SyntaxProcessor syntax;
     protected NLGModule formatter = null;
@@ -138,8 +140,16 @@ public abstract class Realiser extends NLGModule {
             debug.append("<br/>POST-MORPHOLOGY TREE<br/>");
             debug.append(postMorphology.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
         }
+        
+        NLGElement postMorphophonology = this.morphophonology.realise(postMorphology);
+        if (this.debug) {
+            System.out.println("\nPOST-MORPHOPHONOLOGY TREE\n"); //$NON-NLS-1$
+            System.out.println(postMorphophonology.printTree(null));
+            debug.append("<br/>POST-MORPHOPHONOLOGY TREE<br/>");
+            debug.append(postMorphophonology.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
+        }
 
-        NLGElement postOrthography = this.orthography.realise(postMorphology);
+        NLGElement postOrthography = this.orthography.realise(postMorphophonology);
         if (this.debug) {
             System.out.println("\nPOST-ORTHOGRAPHY TREE\n"); //$NON-NLS-1$
             System.out.println(postOrthography.printTree(null));
@@ -206,6 +216,7 @@ public abstract class Realiser extends NLGModule {
     public void setLexicon(Lexicon newLexicon) {
         this.syntax.setLexicon(newLexicon);
         this.morphology.setLexicon(newLexicon);
+        this.morphophonology.setLexicon(newLexicon);
         this.orthography.setLexicon(newLexicon);
     }
 

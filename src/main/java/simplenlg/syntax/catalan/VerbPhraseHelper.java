@@ -300,28 +300,28 @@ class VerbPhraseHelper extends simplenlg.syntax.VerbPhraseHelper {
                 case FIRST:
                     switch (n) {
                         case PLURAL:
-                            pronoun = new InflectedWordElement("nosotros", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("nosaltres", LexicalCategory.PRONOUN);
                             break;
                         default:
-                            pronoun = new InflectedWordElement("yo", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("jo", LexicalCategory.PRONOUN);
                     }
                     break;
                 case SECOND:
                     switch (n) {
                         case PLURAL:
-                            pronoun = new InflectedWordElement("vosotros", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("vosaltres", LexicalCategory.PRONOUN);
                             break;
                         default:
-                            pronoun = new InflectedWordElement("tú", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("tu", LexicalCategory.PRONOUN);
                     }
                     break;
                 default:
                     switch (n) {
                         case PLURAL:
-                            pronoun = new InflectedWordElement("ellos", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("ells", LexicalCategory.PRONOUN);
                             break;
                         default:
-                            pronoun = new InflectedWordElement("él", LexicalCategory.PRONOUN);
+                            pronoun = new InflectedWordElement("ell", LexicalCategory.PRONOUN);
                     }
             }
             vgComponents.push(frontVG);
@@ -349,7 +349,7 @@ class VerbPhraseHelper extends simplenlg.syntax.VerbPhraseHelper {
             frontVG.setFeature(Feature.FORM, Form.PAST_PARTICIPLE);
             vgComponents.push(frontVG);
         }
-        newFront = new InflectedWordElement("haber", LexicalCategory.VERB); //$NON-NLS-1$
+        newFront = new InflectedWordElement("haver", LexicalCategory.VERB); //$NON-NLS-1$
         switch (tenseValue) {
             case PAST:
                 newFront.setFeature(Feature.TENSE, Tense.PRESENT);

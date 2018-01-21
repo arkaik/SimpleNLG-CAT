@@ -61,49 +61,49 @@ public class AdjectivePhraseTest extends SimpleNLG4Test {
 
         // form the adjphrase "increíblemente salacious"
         this.salacious.addPreModifier(this.phraseFactory
-                .createAdverbPhrase("increíblemente")); //$NON-NLS-1$
-        Assert.assertEquals("increíblemente salaz", this.realiser //$NON-NLS-1$
+                .createAdverbPhrase("increíblement")); //$NON-NLS-1$
+        Assert.assertEquals("increíblement salaç", this.realiser //$NON-NLS-1$
                 .realise(this.salacious).getRealisation());
 
         // form the adjphrase "sorprendentemente beautiful"
-        this.beautiful.addPreModifier("sorprendentemente"); //$NON-NLS-1$
-        Assert.assertEquals("sorprendentemente bonito", this.realiser //$NON-NLS-1$
+        this.beautiful.addPreModifier("sorprendentment"); //$NON-NLS-1$
+        Assert.assertEquals("sorprendentment bonic", this.realiser //$NON-NLS-1$
                 .realise(this.beautiful).getRealisation());
 
         // coordinate the two aps
         CoordinatedPhraseElement coordap = this.phraseFactory.createCoordinatedPhrase(
                 this.salacious, this.beautiful);
-        Assert.assertEquals("increíblemente salaz y sorprendentemente bonito", //$NON-NLS-1$
+        Assert.assertEquals("increíblement salaç i sorprendentment bonic", //$NON-NLS-1$
                 this.realiser.realise(coordap).getRealisation());
 
         // changing the inner conjunction
         coordap.setFeature(Feature.CONJUNCTION, "o"); //$NON-NLS-1$
-        Assert.assertEquals("increíblemente salaz o sorprendentemente bonito", //$NON-NLS-1$
+        Assert.assertEquals("increíblement salaç o sorprendentment bonic", //$NON-NLS-1$
                 this.realiser.realise(coordap).getRealisation());
 
         // coordinate this with a new AdjPhraseSpec
         CoordinatedPhraseElement coord2 = this.phraseFactory.createCoordinatedPhrase(coordap,
                 this.stunning);
         Assert.assertEquals(
-                "increíblemente salaz o sorprendentemente bonito y estupendo", //$NON-NLS-1$
+                "increíblement salaç o sorprendentment bonic i impressionant", //$NON-NLS-1$
                 this.realiser.realise(coord2).getRealisation());
 
         // add a premodifier the coordinate phrase, yielding
         // "seriamente y innegablemente increíblemente salacious o sorprendentemente beautiful
         // y stunning"
         CoordinatedPhraseElement preMod = this.phraseFactory.createCoordinatedPhrase(
-                new StringElement("seriamente"), new StringElement("innegablemente")); //$NON-NLS-1$//$NON-NLS-2$
+                new StringElement("seriament"), new StringElement("innegablement")); //$NON-NLS-1$//$NON-NLS-2$
 
         coord2.addPreModifier(preMod);
         Assert.assertEquals(
-                "seriamente y innegablemente increíblemente salaz o sorprendentemente bonito y estupendo", //$NON-NLS-1$
+                "seriament i innegablement increíblement salaç o sorprendentment bonic i impressionant", //$NON-NLS-1$
                 this.realiser.realise(coord2).getRealisation());
 
         // adding a coordinate rather than coordinating should give a different
         // result
         coordap.addCoordinate(this.stunning);
         Assert.assertEquals(
-                "increíblemente salaz, sorprendentemente bonito o estupendo", //$NON-NLS-1$
+                "increíblement salaç, sorprendentment bonic o impressionant", //$NON-NLS-1$
                 this.realiser.realise(coordap).getRealisation());
 
     }
@@ -114,18 +114,18 @@ public class AdjectivePhraseTest extends SimpleNLG4Test {
     @Test
     public void testAdv() {
 
-        PhraseElement sent = this.phraseFactory.createClause("John", "comer"); //$NON-NLS-1$ //$NON-NLS-2$
+        PhraseElement sent = this.phraseFactory.createClause("John", "menjar"); //$NON-NLS-1$ //$NON-NLS-2$
 
-        PhraseElement adv = this.phraseFactory.createAdverbPhrase("rápido"); //$NON-NLS-1$
+        PhraseElement adv = this.phraseFactory.createAdverbPhrase("ràpid"); //$NON-NLS-1$
 
         sent.addPostModifier(adv);
 
-        Assert.assertEquals("John come rápido", this.realiser.realise(sent) //$NON-NLS-1$
+        Assert.assertEquals("John menja ràpid", this.realiser.realise(sent) //$NON-NLS-1$
                 .getRealisation());
 
-        adv.addPreModifier("muy"); //$NON-NLS-1$
+        adv.addPreModifier("molt"); //$NON-NLS-1$
 
-        Assert.assertEquals("John come muy rápido", this.realiser.realise( //$NON-NLS-1$
+        Assert.assertEquals("John menja molt ràpid", this.realiser.realise( //$NON-NLS-1$
                 sent).getRealisation());
 
     }
@@ -136,9 +136,9 @@ public class AdjectivePhraseTest extends SimpleNLG4Test {
     @Test
     public void testParticipleAdj() {
         PhraseElement ap = this.phraseFactory
-                .createAdjectivePhrase(this.lexicon.getWord("asociado",
+                .createAdjectivePhrase(this.lexicon.getWord("associat",
                         LexicalCategory.ADJECTIVE));
-        Assert.assertEquals("asociado", this.realiser.realise(ap)
+        Assert.assertEquals("associat", this.realiser.realise(ap)
                 .getRealisation());
     }
 
@@ -148,17 +148,17 @@ public class AdjectivePhraseTest extends SimpleNLG4Test {
     @Test
     public void testMultipleModifiers() {
         PhraseElement np = this.phraseFactory
-                .createNounPhrase(this.lexicon.getWord("mensaje",
+                .createNounPhrase(this.lexicon.getWord("missatge",
                         LexicalCategory.NOUN));
-        np.addPreModifier(this.lexicon.getWord("activo",
+        np.addPreModifier(this.lexicon.getWord("actiu",
                 LexicalCategory.ADJECTIVE));
         np.addPreModifier(this.lexicon.getWord("temperatura",
                 LexicalCategory.ADJECTIVE));
-        Assert.assertEquals("activo, temperatura mensaje", this.realiser.realise(np).getRealisation());
+        Assert.assertEquals("actiu, temperatura missatge", this.realiser.realise(np).getRealisation());
 
         //now we set the realiser not to separate using commas
         this.realiser.setCommaSepPremodifiers(false);
-        Assert.assertEquals("activo temperatura mensaje", this.realiser.realise(np).getRealisation());
+        Assert.assertEquals("actiu temperatura missatge", this.realiser.realise(np).getRealisation());
 
     }
 

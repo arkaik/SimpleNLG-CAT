@@ -70,15 +70,15 @@ class NounPhraseHelper extends simplenlg.syntax.NounPhraseHelper {
         Object personValue = phrase.getFeature(Feature.PERSON);
 
         if (Person.FIRST.equals(personValue)) {
-            pronoun = "yo"; //$NON-NLS-1$
+            pronoun = "jo"; //$NON-NLS-1$
         } else if (Person.SECOND.equals(personValue)) {
-            pronoun = "tú"; //$NON-NLS-1$
+            pronoun = "tu"; //$NON-NLS-1$
         } else {
             Object genderValue = phrase.getFeature(simplenlg.features.LexicalFeature.GENDER);
             if (Gender.FEMININE.equals(genderValue)) {
                 pronoun = "ella"; //$NON-NLS-1$
             } else if (Gender.MASCULINE.equals(genderValue)) {
-                pronoun = "él"; //$NON-NLS-1$
+                pronoun = "ell"; //$NON-NLS-1$
             }
         }
         // AG: createWord now returns WordElement; so we embed it in an

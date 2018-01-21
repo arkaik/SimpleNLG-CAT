@@ -81,47 +81,47 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         this.s1.setVerbPhrase(this.phraseFactory.createVerbPhrase("besar"));
         this.s1.setObject(this.man);
         this.s1.addPostModifier(this.phraseFactory
-                .createPrepositionPhrase("tras", this.phraseFactory
+                .createPrepositionPhrase("rere", this.phraseFactory
                         .createNounPhrase("el", "cortina")));
 
         // the woman kicked the dog on the rock
         this.s2 = this.phraseFactory.createClause();
-        this.s2.setSubject(this.phraseFactory.createNounPhrase("el", "mujer")); //$NON-NLS-1$
-        this.s2.setVerbPhrase(this.phraseFactory.createVerbPhrase("golpear")); //$NON-NLS-1$
-        this.s2.setObject(this.phraseFactory.createNounPhrase("el", "perro"));
+        this.s2.setSubject(this.phraseFactory.createNounPhrase("el", "dona")); //$NON-NLS-1$
+        this.s2.setVerbPhrase(this.phraseFactory.createVerbPhrase("colpejar")); //$NON-NLS-1$
+        this.s2.setObject(this.phraseFactory.createNounPhrase("el", "gos"));
         this.s2.addPostModifier(this.onTheRock);
 
         // the woman kicked the dog behind the curtain
         this.s3 = this.phraseFactory.createClause();
-        this.s3.setSubject(this.phraseFactory.createNounPhrase("el", "mujer")); //$NON-NLS-1$
-        this.s3.setVerbPhrase(this.phraseFactory.createVerbPhrase("golpear")); //$NON-NLS-1$
-        this.s3.setObject(this.phraseFactory.createNounPhrase("el", "perro"));
+        this.s3.setSubject(this.phraseFactory.createNounPhrase("el", "dona")); //$NON-NLS-1$
+        this.s3.setVerbPhrase(this.phraseFactory.createVerbPhrase("colpejar")); //$NON-NLS-1$
+        this.s3.setObject(this.phraseFactory.createNounPhrase("el", "gos"));
         this.s3.addPostModifier(this.phraseFactory
-                .createPrepositionPhrase("tras", this.phraseFactory
+                .createPrepositionPhrase("rere", this.phraseFactory
                         .createNounPhrase("el", "cortina")));
 
         // the man kicked the dog behind the curtain
         this.s4 = this.phraseFactory.createClause();
         this.s4.setSubject(this.man); //$NON-NLS-1$
-        this.s4.setVerbPhrase(this.phraseFactory.createVerbPhrase("golpear")); //$NON-NLS-1$
-        this.s4.setObject(this.phraseFactory.createNounPhrase("el", "perro"));
+        this.s4.setVerbPhrase(this.phraseFactory.createVerbPhrase("colpejar")); //$NON-NLS-1$
+        this.s4.setObject(this.phraseFactory.createNounPhrase("el", "gos"));
         this.s4.addPostModifier(this.behindTheCurtain);
 
         // the girl kicked the dog behind the curtain
         this.s5 = this.phraseFactory.createClause();
-        this.s5.setSubject(this.phraseFactory.createNounPhrase("el", "niño")); //$NON-NLS-1$
+        this.s5.setSubject(this.phraseFactory.createNounPhrase("el", "nen")); //$NON-NLS-1$
         this.s5.getSubject().setFeature(LexicalFeature.GENDER, Gender.FEMININE);
-        this.s5.setVerbPhrase(this.phraseFactory.createVerbPhrase("golpear")); //$NON-NLS-1$
-        this.s5.setObject(this.phraseFactory.createNounPhrase("el", "perro"));
+        this.s5.setVerbPhrase(this.phraseFactory.createVerbPhrase("colpejar")); //$NON-NLS-1$
+        this.s5.setObject(this.phraseFactory.createNounPhrase("el", "gos"));
         this.s5.addPostModifier(this.behindTheCurtain);
 
         // the woman kissed the dog behind the curtain
         this.s6 = this.phraseFactory.createClause();
-        this.s6.setSubject(this.phraseFactory.createNounPhrase("el", "mujer")); //$NON-NLS-1$
+        this.s6.setSubject(this.phraseFactory.createNounPhrase("el", "dona")); //$NON-NLS-1$
         this.s6.setVerbPhrase(this.phraseFactory.createVerbPhrase("besar")); //$NON-NLS-1$
-        this.s6.setObject(this.phraseFactory.createNounPhrase("el", "perro"));
+        this.s6.setObject(this.phraseFactory.createNounPhrase("el", "gos"));
         this.s6.addPostModifier(this.phraseFactory
-                .createPrepositionPhrase("tras", this.phraseFactory
+                .createPrepositionPhrase("rere", this.phraseFactory
                         .createNounPhrase("el", "cortina")));
     }
 
@@ -193,7 +193,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         Assert.assertTrue(result.size() == 1); // should only be one sentence
         NLGElement aggregated = result.get(0);
         Assert.assertEquals(
-                "la mujer y el hombre golpean el perro tras la cortina", //$NON-NLS-1$
+                "la dona i l'home colpegen el gos rere la cortina", //$NON-NLS-1$
                 this.realiser.realise(aggregated).getRealisation());
     }
 
@@ -204,9 +204,9 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
     public void testCoordinationWithModifiers() {
         // now add a couple of front modifiers
         this.s3.addFrontModifier(this.phraseFactory
-                .createAdverbPhrase("sin embargo"));
+                .createAdverbPhrase("ara bé"));
         this.s4.addFrontModifier(this.phraseFactory
-                .createAdverbPhrase("sin embargo"));
+                .createAdverbPhrase("ara bé"));
         List<NLGElement> elements = Arrays.asList((NLGElement) this.s3,
                 (NLGElement) this.s4);
         List<NLGElement> result = this.coord.apply(elements);
@@ -214,7 +214,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         NLGElement aggregated = result.get(0);
         Assert
                 .assertEquals(
-                        "sin embargo la mujer y el hombre golpean el perro tras la cortina", //$NON-NLS-1$
+                        "ara bé la dona i l'home colpegen el gos rere la cortina", //$NON-NLS-1$
                         this.realiser.realise(aggregated).getRealisation());
     }
 
@@ -229,7 +229,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         NLGElement aggregated = result.get(0);
         Assert
                 .assertEquals(
-                        "la mujer y el hombre y la niña golpean el perro tras la cortina", //$NON-NLS-1$
+                        "la dona i l'home i la nena colpegen el gos rere la cortina", //$NON-NLS-1$
                         this.realiser.realise(aggregated).getRealisation());
     }
 
@@ -241,7 +241,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         NLGElement aggregated = this.fcr.apply(this.s2, this.s3);
         Assert
                 .assertEquals(
-                        "la mujer golpea el perro en la roca y golpea el perro tras la cortina", //$NON-NLS-1$
+                        "la dona colpeja el gos a la roca i colpeja el gos rere la cortina", //$NON-NLS-1$
                         this.realiser.realise(aggregated).getRealisation());
     }
 
@@ -253,7 +253,7 @@ public class ClauseAggregationTest extends SimpleNLG4Test {
         NLGElement aggregated = this.bcr.apply(this.s3, this.s6);
         Assert
                 .assertEquals(
-                        "la mujer golpea y la mujer besa el perro tras la cortina",
+                        "la dona colpeja i la dona besa el gos rere la cortina",
                         this.realiser.realise(aggregated).getRealisation());
     }
 

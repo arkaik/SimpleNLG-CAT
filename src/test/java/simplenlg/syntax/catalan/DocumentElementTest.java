@@ -50,9 +50,9 @@ public class DocumentElementTest extends SimpleNLG4Test {
     @Before
     public void setUp() {
         super.setUp();
-        p1 = this.phraseFactory.createClause("tú", "ser", "feliz");
-        p2 = this.phraseFactory.createClause("yo", "estar", "triste");
-        p3 = this.phraseFactory.createClause("ellos", "estar", this.phraseFactory.createAdjectivePhrase("nervioso"));
+        p1 = this.phraseFactory.createClause("tú", "ser", "feliç");
+        p2 = this.phraseFactory.createClause("jo", "estar", "trist");
+        p3 = this.phraseFactory.createClause("ells", "estar", this.phraseFactory.createAdjectivePhrase("nervioso"));
         p3.getObject().setPlural(true);
     }
 
@@ -77,7 +77,7 @@ public class DocumentElementTest extends SimpleNLG4Test {
         DocumentElement par1 = this.phraseFactory.createParagraph(Arrays
                 .asList(s1, s2, s3));
 
-        Assert.assertEquals("Tú eres feliz. Yo estoy triste. Ellos están nerviosos.\n\n",
+        Assert.assertEquals("Tú ets feliç. Jo estic trist. Ells estan nerviosos.\n\n",
                 this.realiser.realise(par1).getRealisation());
 
     }

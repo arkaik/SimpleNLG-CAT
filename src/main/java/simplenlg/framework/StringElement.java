@@ -19,6 +19,8 @@
 package simplenlg.framework;
 
 import simplenlg.features.Feature;
+import simplenlg.features.InternalFeature;
+import simplenlg.lexicon.Lexicon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,23 @@ public class StringElement extends NLGElement {
 		setCategory(PhraseCategory.CANNED_TEXT);
 		setFeature(Feature.ELIDED, false);
 		setRealisation(value);
+	}
+	
+	/**
+	 * Constructs a new string element from an InflectedWordElement.
+	 * 
+	 * @param value
+	 *            the text for this string element.
+	 * @author vaudrypl
+	 */
+	public StringElement(String form, InflectedWordElement word) {
+		//the StringElement inherits all features from the inflected word
+		for(String feature : word.getAllFeatureNames()) {
+			setFeature(feature, word.getFeature(feature));
+		}
+		setCategory(word.getCategory());
+		setFeature(Feature.ELIDED, false);
+		setRealisation(form);
 	}
 
 	/**
@@ -80,7 +99,7 @@ public class StringElement extends NLGElement {
 		else
 			return getRealisation().equals(o.getRealisation());
 	}
-
+	
 	@Override
 	public String printTree(String indent) {
 		StringBuffer print = new StringBuffer();
@@ -94,4 +113,33 @@ public class StringElement extends NLGElement {
 		print.append('\n');
 		return print.toString();
 	}
+	
+	/**
+	 * 
+	 * @return this StringElement itself
+	 * 
+	 *         See superclass version in NLGElement.
+	 *         
+	 * @author vaudrypl
+	 */
+	@Override
+	public StringElement getLeftMostStringElement()
+	{
+		return this;
+	}
+
+	/**
+	 * 
+	 * @return this StringElement itself
+	 * 
+	 *         See superclass version in NLGElement.
+	 *         
+	 * @author vaudrypl
+	 */
+	@Override
+	public StringElement getRightMostStringElement()
+	{
+		return this;
+	}
+	
 }

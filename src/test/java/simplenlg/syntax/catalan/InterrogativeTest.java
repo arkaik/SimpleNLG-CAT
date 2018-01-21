@@ -37,7 +37,7 @@ import simplenlg.realiser.spanish.Realiser;
  *
  * @author agatt
  */
-@Ignore
+//@Ignore
 public class InterrogativeTest extends SimpleNLG4Test {
 
     // set up a few more fixtures
@@ -71,20 +71,20 @@ public class InterrogativeTest extends SimpleNLG4Test {
         PPPhraseSpec deJohn = this.phraseFactory.createPrepositionPhrase("de", john);
         flor.setPostModifier(deJohn);
         PhraseElement _woman = this.phraseFactory.createNounPhrase(
-                "la", "mujer"); //$NON-NLS-1$ //$NON-NLS-2$
+                "la", "dona"); //$NON-NLS-1$ //$NON-NLS-2$
         this.s3 = this.phraseFactory.createClause(this.man, this.give, flor);
         this.s3.setIndirectObject(_woman);
 
         CoordinatedPhraseElement subjects = this.phraseFactory.createCoordinatedPhrase(
                 this.phraseFactory.createNounPhrase("Jane"), //$NON-NLS-1$
                 this.phraseFactory.createNounPhrase("Andrew")); //$NON-NLS-1$
-        this.s4 = this.phraseFactory.createClause(subjects, "cojer", //$NON-NLS-1$
-                "las pelotas"); //$NON-NLS-1$
+        this.s4 = this.phraseFactory.createClause(subjects, "agafen", //$NON-NLS-1$
+                "les pilotes"); //$NON-NLS-1$
         this.s4.getObject().setPlural(true);
         this.s4.getObject().setFeature(LexicalFeature.GENDER, Gender.FEMININE);
-        this.s4.addPostModifier("en la tienda"); //$NON-NLS-1$
+        this.s4.addPostModifier("a la botiga"); //$NON-NLS-1$
         this.s4.setFeature(Feature.CUE_PHRASE, "sin embargo"); //$NON-NLS-1$
-        this.s4.addFrontModifier("mañana"); //$NON-NLS-1$
+        this.s4.addFrontModifier("demà"); //$NON-NLS-1$
         this.s4.setFeature(Feature.TENSE, Tense.FUTURE);
         // this.s5 = new SPhraseSpec();
         // this.s5.setSubject(new NPPhraseSpec("the", "dog"));
@@ -111,7 +111,7 @@ public class InterrogativeTest extends SimpleNLG4Test {
 
         NLGFactory docFactory = new NLGFactory(this.lexicon);
         DocumentElement sent = docFactory.createSentence(this.s1);
-        Assert.assertEquals("¿Besa la mujer el hombre?", this.realiser //$NON-NLS-1$
+        Assert.assertEquals("¿Besa la dona l'home?", this.realiser //$NON-NLS-1$
                 .realise(sent).getRealisation());
 
         // simple past
@@ -249,11 +249,11 @@ public class InterrogativeTest extends SimpleNLG4Test {
                 this.phraseFactory.createNounPhrase("Andrew")); //$NON-NLS-1$
         this.s4 = this.phraseFactory.createClause(subjects, complex);
         this.s4.setFeature(Feature.CUE_PHRASE, "sin embargo"); //$NON-NLS-1$
-        this.s4.addFrontModifier("mañana"); //$NON-NLS-1$
+        this.s4.addFrontModifier("demà"); //$NON-NLS-1$
         this.s4.setFeature(Feature.TENSE, Tense.FUTURE);
 
         Assert.assertEquals(
-                "sin embargo mañana Jane y Andrew besarán el perro y caminarán en la habitación", //$NON-NLS-1$
+                "sin embargo demà Jane y Andrew besarán el perro y caminarán en la habitación", //$NON-NLS-1$
                 this.realiser.realise(this.s4).getRealisation());
 
         // setting to interrogative should automatically give us a single,
@@ -443,11 +443,11 @@ public class InterrogativeTest extends SimpleNLG4Test {
     public void testProgrssiveWHObjectQuestions() {
         SPhraseSpec p = this.phraseFactory.createClause();
         p.setSubject("Mary");
-        p.setVerb("comer");
+        p.setVerb("menjar");
         p.setObject(this.phraseFactory.createNounPhrase("la", "tarta"));
         p.setFeature(Feature.PROGRESSIVE, true);
         p.setFeature(Feature.INTERROGATIVE_TYPE, InterrogativeType.WHAT_OBJECT);
-        Assert.assertEquals("qué está comiendo Mary", //$NON-NLS-1$
+        Assert.assertEquals("què està menjant la Mary", //$NON-NLS-1$
                 this.realiser.realise(p).getRealisation());
 
         // AG -- need to check this; it doesn't work

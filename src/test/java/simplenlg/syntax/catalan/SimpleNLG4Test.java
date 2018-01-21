@@ -92,14 +92,14 @@ public abstract class SimpleNLG4Test extends TestCase {
         this.boy = this.phraseFactory.createNounPhrase("el", "nen"); //$NON-NLS-1$ //$NON-NLS-2$
 
         this.beautiful = this.phraseFactory.createAdjectivePhrase("bonic"); //$NON-NLS-1$
-        this.stunning = this.phraseFactory.createAdjectivePhrase("estupendo"); //$NON-NLS-1$
-        this.salacious = this.phraseFactory.createAdjectivePhrase("salaz"); //$NON-NLS-1$
+        this.stunning = this.phraseFactory.createAdjectivePhrase("impressionant"); //$NON-NLS-1$
+        this.salacious = this.phraseFactory.createAdjectivePhrase("salaç"); //$NON-NLS-1$
 
-        this.onTheRock = this.phraseFactory.createPrepositionPhrase("en"); //$NON-NLS-1$
+        this.onTheRock = this.phraseFactory.createPrepositionPhrase("a"); //$NON-NLS-1$
         this.np4 = this.phraseFactory.createNounPhrase("el", "roca"); //$NON-NLS-1$ //$NON-NLS-2$
         this.onTheRock.addComplement(this.np4);
 
-        this.behindTheCurtain = this.phraseFactory.createPrepositionPhrase("tras"); //$NON-NLS-1$
+        this.behindTheCurtain = this.phraseFactory.createPrepositionPhrase("rere"); //$NON-NLS-1$
         this.np5 = this.phraseFactory.createNounPhrase("el", "cortina"); //$NON-NLS-1$ //$NON-NLS-2$
         this.behindTheCurtain.addComplement(this.np5);
 
@@ -113,7 +113,7 @@ public abstract class SimpleNLG4Test extends TestCase {
         this.proTest1 = this.phraseFactory.createNounPhrase("el", "cantant"); //$NON-NLS-1$ //$NON-NLS-2$
         this.proTest2 = this.phraseFactory.createNounPhrase("alguna", "persona"); //$NON-NLS-1$ //$NON-NLS-2$
 
-        this.kick = this.phraseFactory.createVerbPhrase("golpear"); //$NON-NLS-1$
+        this.kick = this.phraseFactory.createVerbPhrase("colpejar"); //$NON-NLS-1$
         this.kiss = this.phraseFactory.createVerbPhrase("besar"); //$NON-NLS-1$
         this.walk = this.phraseFactory.createVerbPhrase("caminar"); //$NON-NLS-1$
         this.talk = this.phraseFactory.createVerbPhrase("parlar"); //$NON-NLS-1$

@@ -138,7 +138,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
         }
 
         checkPossessive(element, realised);
-        StringElement realisedElement = new StringElement(realised.toString());
+        StringElement realisedElement = new StringElement(realised.toString(), element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
@@ -340,7 +340,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
                 realised = baseForm;
             }
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
@@ -559,7 +559,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
         } else {
             realised = baseForm;
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
@@ -695,7 +695,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
         } else {
             realised = baseForm;
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;
@@ -745,7 +745,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
         } else {
             realised = element.getBaseForm();
         }
-        StringElement realisedElement = new StringElement(realised);
+        StringElement realisedElement = new StringElement(realised, element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
 
@@ -808,7 +808,7 @@ public class MorphologyRules extends simplenlg.morphology.MorphologyRules {
     }
 
     public NLGElement doDeterminerMorphology(InflectedWordElement element) {
-        NLGElement realisedElement = new StringElement(element.getBaseForm());
+        NLGElement realisedElement = new StringElement(element.getBaseForm(), element);
         realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
                 element.getFeature(InternalFeature.DISCOURSE_FUNCTION));
         return realisedElement;

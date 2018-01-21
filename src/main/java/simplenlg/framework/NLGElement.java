@@ -767,5 +767,54 @@ public abstract class NLGElement {
 
         return eq;
     }
+    
+    /**
+	 * 
+	 * @return The leftmost StringElement in the tree of its children.
+	 *         If it doesn't have children :
+	 *         Returns the element itself if it is a StringElement,
+	 *         returns null otherwise.
+	 *         
+	 *         See overridden version in StringElement.
+	 *         
+	 * @author vaudrypl
+	 */
+    public StringElement getLeftMostStringElement()
+	{
+		List<NLGElement> childrenList = getChildren();
+		if (childrenList == null) return null;
+
+		// looking for a StringElement (non null), beginning with leftmost child
+		StringElement leftmost = null;
+		int size = childrenList.size();
+		for (int index = 0; leftmost == null && index < size; index++) {
+			leftmost = childrenList.get(index).getLeftMostStringElement();
+		}
+		return leftmost;
+	}
+
+	/**
+	 * 
+	 * @return The rightmost StringElement in the tree of its children.
+	 *         If it doesn't have children :
+	 *         Returns the element itself if it is a StringElement,
+	 *         returns null otherwise.
+	 *         
+	 *         See overridden version in StringElement.
+	 *         
+	 * @author vaudrypl
+	 */
+	public StringElement getRightMostStringElement()
+	{
+		List<NLGElement> childrenList = getChildren();
+		if (childrenList == null) return null;
+
+		// looking for a StringElement (non null), beginning with rightmost child
+		StringElement rightmost = null;
+		for (int index = childrenList.size() - 1; rightmost == null && index >= 0; index--) {
+			rightmost = childrenList.get(index).getRightMostStringElement();
+		}
+		return rightmost;
+	}
 
 }

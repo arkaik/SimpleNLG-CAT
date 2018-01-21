@@ -73,22 +73,22 @@ public class FeatureTest extends SimpleNLG4Test {
 
         // Create a noun phrase with the subject lover and the determiner
         // as she
-        PhraseElement herLover = phraseFactory.createNounPhrase(she, "amante");
+        PhraseElement herLover = phraseFactory.createNounPhrase(she, "amant");
 
         // Create a clause to say 'he be her lover'
-        PhraseElement clause = phraseFactory.createClause("él", "ser", herLover);
+        PhraseElement clause = phraseFactory.createClause("ell", "ésser", herLover);
 
         // Add the cue phrase need the comma as orthography
         // currently doesn't handle this.
         // This could be expanded to be a noun phrase with determiner
         // 'two' and noun 'week', set to plural and with a premodifier of
         // 'after'
-        clause.setFeature(Feature.CUE_PHRASE, "después de dos semanas,");
+        clause.setFeature(Feature.CUE_PHRASE, "després de dues setmanes,");
 
         // Add the 'for a fortnight' as a post modifier. Alternatively
         // this could be added as a prepositional phrase 'for' with a
         // complement of a noun phrase ('a' 'fortnight')
-        clause.addPostModifier("durante una quincena");
+        clause.addPostModifier("durant una quinzena");
 
         // Set 'be' to 'was' as past tense
         clause.setFeature(Feature.TENSE, Tense.PAST);
@@ -99,7 +99,7 @@ public class FeatureTest extends SimpleNLG4Test {
         // Realise the sentence
         NLGElement realised = this.realiser.realise(sentence1);
 
-        Assert.assertEquals("Después de dos semanas, él fue su amante durante una quincena.",
+        Assert.assertEquals("Després de dues setmanes, ell fou el seu amant durant una quinzena.",
                 realised.getRealisation());
     }
 
@@ -118,11 +118,11 @@ public class FeatureTest extends SimpleNLG4Test {
 
         // Create a noun phrase with the subject lover and the determiner
         // as she
-        PhraseElement herLover = phraseFactory.createNounPhrase(she, "amante");
+        PhraseElement herLover = phraseFactory.createNounPhrase(she, "amant");
         herLover.setPlural(true);
 
         // Create the pronoun 'he'
-        NLGElement he = phraseFactory.createNounPhrase(LexicalCategory.PRONOUN, "él");
+        NLGElement he = phraseFactory.createNounPhrase(LexicalCategory.PRONOUN, "ell");
         he.setPlural(true);
 
         // Create a clause to say 'they be her lovers'
@@ -134,7 +134,7 @@ public class FeatureTest extends SimpleNLG4Test {
         // This could be expanded to be a noun phrase with determiner
         // 'two' and noun 'week', set to plural and with a premodifier of
         // 'after'
-        clause.setFeature(Feature.CUE_PHRASE, "después de dos semanas,");
+        clause.setFeature(Feature.CUE_PHRASE, "després de dues setmanes,");
 
         // Add the 'for a fortnight' as a post modifier. Alternatively
         // this could be added as a prepositional phrase 'for' with a
@@ -161,14 +161,14 @@ public class FeatureTest extends SimpleNLG4Test {
     public void testComplementiserFeature_PastTense() {
         this.phraseFactory.setLexicon(this.lexicon);
 
-        PhraseElement born = phraseFactory.createClause("Dave Bus", "nacer");
+        PhraseElement born = phraseFactory.createClause("Dave Bus", "neixer");
         born.setFeature(Feature.TENSE, Tense.PAST);
         born.setFeature(Feature.COMPLEMENTISER, "en la que");
 
         PhraseElement theHouse = phraseFactory.createNounPhrase("la", "casa");
         theHouse.addComplement(born);
 
-        PhraseElement clause = phraseFactory.createClause(theHouse, "estar", phraseFactory.createPrepositionPhrase("en", "Edinburgh"));
+        PhraseElement clause = phraseFactory.createClause(theHouse, "estar", phraseFactory.createPrepositionPhrase("a", "Edimburg"));
         DocumentElement sentence = docFactory.createSentence(clause);
         NLGElement realised = realiser.realise(sentence);
 
@@ -189,9 +189,9 @@ public class FeatureTest extends SimpleNLG4Test {
 
         CoordinatedPhraseElement coord1 = phraseFactory.createCoordinatedPhrase(dave, albert);
 
-        PhraseElement born = phraseFactory.createClause(coord1, "nacer");
+        PhraseElement born = phraseFactory.createClause(coord1, "neixer");
         born.setFeature(Feature.TENSE, Tense.PAST);
-        born.setFeature(Feature.COMPLEMENTISER, "en la cual");
+        born.setFeature(Feature.COMPLEMENTISER, "a la qual");
 
         PhraseElement theHouse = phraseFactory.createNounPhrase("la", "casa");
         theHouse.addComplement(born);
@@ -202,7 +202,7 @@ public class FeatureTest extends SimpleNLG4Test {
         NLGElement realised = realiser.realise(sentence);
 
         // Retrieve the realisation and dump it to the console
-        Assert.assertEquals("La casa en la cual Dave Bus y Albert nacieron está en Edinburgh.",
+        Assert.assertEquals("La casa a la qual en Dave Bus i l'Albert nasqueren està a Edimburg.",
                 realised.getRealisation());
     }
 
@@ -214,7 +214,7 @@ public class FeatureTest extends SimpleNLG4Test {
         this.phraseFactory.setLexicon(this.lexicon);
 
         // Inner clause is 'I' 'make' 'sentence' 'for'.
-        PhraseElement inner = phraseFactory.createClause("yo", "hacer", "sentencia");
+        PhraseElement inner = phraseFactory.createClause("jo", "hacer", "sentencia");
         // Inner clause set to progressive.
         inner.setFeature(Feature.PROGRESSIVE, true);
 

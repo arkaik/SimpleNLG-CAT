@@ -91,7 +91,7 @@ public class PhraseSpecTest extends SimpleNLG4Test {
         c2.addModifier("al parc");
         // try setting tense directly as a feature
         c2.setFeature(Feature.TENSE, Tense.PAST);
-        Assert.assertEquals("afortunadament l'home em vegé ràpidament al parc", this.realiser //$NON-NLS-1$
+        Assert.assertEquals("afortunadament l'home em véu ràpidament al parc", this.realiser //$NON-NLS-1$
                 .realise(c2).getRealisation());
     }
 

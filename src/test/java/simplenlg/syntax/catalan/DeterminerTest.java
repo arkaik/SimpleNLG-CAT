@@ -74,12 +74,12 @@ public class DeterminerTest {
 
         SPhraseSpec sentence = this.phraseFactory.createClause();
 
-        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "dog");
+        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "gos");
         sentence.setSubject(subject);
 
         String output = this.realiser.realiseSentence(sentence);
 
-        Assert.assertEquals("Un dog.", output);
+        Assert.assertEquals("Un gos.", output);
     }
 
     /**
@@ -89,12 +89,12 @@ public class DeterminerTest {
     public void testLowercaseVowel() {
         SPhraseSpec sentence = this.phraseFactory.createClause();
 
-        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "buho");
+        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "mussol");
         sentence.setSubject(subject);
 
         String output = this.realiser.realiseSentence(sentence);
 
-        Assert.assertEquals("Un buho.", output);
+        Assert.assertEquals("Un mussol.", output);
     }
 
     /**
@@ -105,12 +105,12 @@ public class DeterminerTest {
 
         SPhraseSpec sentence = this.phraseFactory.createClause();
 
-        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "Gato");
+        NPPhraseSpec subject = this.phraseFactory.createNounPhrase("un", "Gat");
         sentence.setSubject(subject);
 
         String output = this.realiser.realiseSentence(sentence);
 
-        Assert.assertEquals("Un Gato.", output);
+        Assert.assertEquals("Un Gat.", output);
     }
 
     /**
@@ -178,13 +178,13 @@ public class DeterminerTest {
      * testSingluarThisDeterminerNPObject - Test for "this" when used in the singular form as a determiner in a NP Object
      */
     @Test
-    public void testSingluarThisDeterminerNPObject() {
+    public void testSingularThisDeterminerNPObject() {
         SPhraseSpec sentence_1 = this.phraseFactory.createClause();
 
-        NPPhraseSpec nounPhrase_1 = this.phraseFactory.createNounPhrase("este", "mono");
+        NPPhraseSpec nounPhrase_1 = this.phraseFactory.createNounPhrase("aquest", "mico");
         sentence_1.setObject(nounPhrase_1);
 
-        Assert.assertEquals("Este mono.", this.realiser.realiseSentence(sentence_1));
+        Assert.assertEquals("Aquest mico.", this.realiser.realiseSentence(sentence_1));
     }
 
     /**
@@ -194,12 +194,12 @@ public class DeterminerTest {
     public void testPluralThisDeterminerNPObject() {
         SPhraseSpec sentence_1 = this.phraseFactory.createClause();
 
-        NPPhraseSpec nounPhrase_1 = this.phraseFactory.createNounPhrase("mono");
+        NPPhraseSpec nounPhrase_1 = this.phraseFactory.createNounPhrase("mico");
         nounPhrase_1.setPlural(true);
-        nounPhrase_1.setDeterminer("este");
+        nounPhrase_1.setDeterminer("aquest");
         sentence_1.setObject(nounPhrase_1);
 
-        Assert.assertEquals("Estos monos.", this.realiser.realiseSentence(sentence_1));
+        Assert.assertEquals("Aquests micos.", this.realiser.realiseSentence(sentence_1));
 
     }
 

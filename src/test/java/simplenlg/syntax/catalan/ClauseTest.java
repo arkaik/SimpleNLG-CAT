@@ -86,7 +86,7 @@ public class ClauseTest extends SimpleNLG4Test {
         this.s3.setIndirectObject(this.woman);
 
         this.s4 = this.phraseFactory.createClause();
-        this.s4.setFeature(Feature.CUE_PHRASE, "sin embargo"); //$NON-NLS-1$
+        this.s4.setFeature(Feature.CUE_PHRASE, "ara bé"); //$NON-NLS-1$
         this.s4.addFrontModifier("mañana"); //$NON-NLS-1$
 
         CoordinatedPhraseElement subject = this.phraseFactory
@@ -96,10 +96,10 @@ public class ClauseTest extends SimpleNLG4Test {
 
         this.s4.setSubject(subject);
 
-        PhraseElement coger = this.phraseFactory.createVerbPhrase("coger"); //$NON-NLS-1$
+        PhraseElement coger = this.phraseFactory.createVerbPhrase("agafar"); //$NON-NLS-1$
         this.s4.setVerbPhrase(coger);
-        this.s4.setObject("las pelotas"); //$NON-NLS-1$
-        this.s4.addPostModifier("en la tienda"); //$NON-NLS-1$
+        this.s4.setObject("les pilotes"); //$NON-NLS-1$
+        this.s4.addPostModifier("a la botiga"); //$NON-NLS-1$
         this.s4.setFeature(Feature.TENSE, Tense.FUTURE);
     }
 
@@ -119,16 +119,16 @@ public class ClauseTest extends SimpleNLG4Test {
      */
     @Test
     public void testBasic() {
-        Assert.assertEquals("la mujer besa al hombre", this.realiser //$NON-NLS-1$
+        Assert.assertEquals("la dona besa a l'home", this.realiser //$NON-NLS-1$
                 .realise(this.s1).getRealisation());
         Assert.assertEquals("hay el perro en la roca", this.realiser //$NON-NLS-1$
                 .realise(this.s2).getRealisation());
 
         setUp();
-        Assert.assertEquals("el hombre da a la mujer la flor de John", //$NON-NLS-1$
+        Assert.assertEquals("l'home dona a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.s3).getRealisation());
         Assert.assertEquals(
-                "sin embargo mañana Jane y Andrew cogerán las pelotas en la tienda", //$NON-NLS-1$
+                "ara bé demà Jane i Andrew agafaran les pilotes en la tienda", //$NON-NLS-1$
                 this.realiser.realise(this.s4).getRealisation());
     }
 
@@ -137,11 +137,11 @@ public class ClauseTest extends SimpleNLG4Test {
      */
     @Test
     public void testDidNot() {
-        PhraseElement s = phraseFactory.createClause("John", "comer");
+        PhraseElement s = phraseFactory.createClause("John", "menja");
         s.setFeature(Feature.TENSE, Tense.PAST);
         s.setFeature(Feature.NEGATED, true);
 
-        Assert.assertEquals("John no comió", //$NON-NLS-1$
+        Assert.assertEquals("John no menjà", //$NON-NLS-1$
                 this.realiser.realise(s).getRealisation());
 
     }
@@ -155,14 +155,14 @@ public class ClauseTest extends SimpleNLG4Test {
         PhraseElement vp = phraseFactory.createVerbPhrase("descansar");
         vp.setFeature(Feature.TENSE, Tense.PAST);
         vp.setFeature(Feature.NEGATED, true);
-        PhraseElement compl = phraseFactory.createVerbPhrase("eterizar");
+        PhraseElement compl = phraseFactory.createVerbPhrase("eteritzar");
         compl.setFeature(Feature.FORM, Form.PAST_PARTICIPLE);
         vp.setComplement(compl);
 
         SPhraseSpec s = phraseFactory.createClause(phraseFactory
-                .createNounPhrase("el", "paciente"), vp);
+                .createNounPhrase("el", "pacient"), vp);
 
-        Assert.assertEquals("el paciente no descansó eterizado", //$NON-NLS-1$
+        Assert.assertEquals("el pacient no descansà eteritzat", //$NON-NLS-1$
                 this.realiser.realise(s).getRealisation());
 
     }
@@ -188,22 +188,22 @@ public class ClauseTest extends SimpleNLG4Test {
     public void testTenses() {
         // simple past
         this.s3.setFeature(Feature.TENSE, Tense.PAST);
-        Assert.assertEquals("el hombre dio a la mujer la flor de John", //$NON-NLS-1$
+        Assert.assertEquals("l'home donà a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.s3).getRealisation());
 
         // perfect
         this.s3.setFeature(Feature.PERFECT, true);
-        Assert.assertEquals("el hombre ha dado a la mujer la flor de John", //$NON-NLS-1$
+        Assert.assertEquals("l'home ha donat a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.s3).getRealisation());
 
         // negation
         this.s3.setFeature(Feature.NEGATED, true);
-        Assert.assertEquals("el hombre no ha dado a la mujer la flor de John", //$NON-NLS-1$
+        Assert.assertEquals("l'home no ha donat a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.s3).getRealisation());
 
         this.s3.setFeature(Feature.PROGRESSIVE, true);
         Assert.assertEquals(
-                "el hombre no ha estado dando a la mujer la flor de John", //$NON-NLS-1$
+                "l'home no ha estat donant a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.s3).getRealisation());
 
         // passivisation with direct and indirect object
@@ -228,7 +228,7 @@ public class ClauseTest extends SimpleNLG4Test {
                 .getFeature(InternalFeature.CLAUSE_STATUS));
 
         // check realisation
-        Assert.assertEquals("dice que el hombre da a la mujer la flor de John", //$NON-NLS-1$
+        Assert.assertEquals("diu que l'home dona a la dona la flor de John", //$NON-NLS-1$
                 this.realiser.realise(this.say).getRealisation());
     }
 
@@ -290,7 +290,7 @@ public class ClauseTest extends SimpleNLG4Test {
 
         this.s4.setFeature(InternalFeature.SUBJECTS, subject);
 
-        PhraseElement pick = this.phraseFactory.createVerbPhrase("coger"); //$NON-NLS-1$
+        PhraseElement pick = this.phraseFactory.createVerbPhrase("ara bé"); //$NON-NLS-1$
         this.s4.setFeature(InternalFeature.VERB_PHRASE, pick);
         this.s4.setObject("las pelotas"); //$NON-NLS-1$
         this.s4.addPostModifier("en la tienda"); //$NON-NLS-1$

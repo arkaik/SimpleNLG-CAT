@@ -21,6 +21,7 @@ package simplenlg.realiser.catalan;
 import simplenlg.format.english.TextFormatter;
 import simplenlg.lexicon.Lexicon;
 import simplenlg.morphology.catalan.MorphologyProcessor;
+import simplenlg.morphophonology.catalan.MorphophonologyProcessor;
 import simplenlg.orthography.catalan.OrthographyProcessor;
 import simplenlg.syntax.catalan.SyntaxProcessor;
 
@@ -52,6 +53,8 @@ public class Realiser extends simplenlg.realiser.Realiser {
     public void initialise() {
         this.morphology = new MorphologyProcessor();
         this.morphology.initialise();
+        this.morphophonology = new MorphophonologyProcessor();
+        this.morphophonology.initialise();
         this.orthography = new OrthographyProcessor();
         this.orthography.initialise();
         this.syntax = new SyntaxProcessor();

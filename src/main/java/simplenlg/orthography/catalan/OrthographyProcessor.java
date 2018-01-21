@@ -73,6 +73,44 @@ public class OrthographyProcessor extends simplenlg.orthography.OrthographyProce
 
         return realisedElement;
     }
+    
+    /**
+     * Realises a list of elements appending the result to the on-going
+     * realisation.
+     *
+     * @param realisation   the <code>StringBuffer<code> containing the current
+     *                      realisation of the sentence.
+     * @param components    the <code>List</code> of <code>NLGElement</code>s representing
+     *                      the components that make up the sentence.
+     * @param listSeparator the string to use to separate elements of the list, empty if
+     *                      no separator needed
+     */
+    protected void realiseList(StringBuffer realisation, List<NLGElement> components, String listSeparator) {
+
+        NLGElement realisedChild = null;
+
+        for (int i = 0; i < components.size(); i++) {
+            NLGElement thisElement = components.get(i);
+            realisedChild = realise(thisElement);
+            String childRealisation = realisedChild.getRealisation();
+
+            // check that the child realisation is non-empty
+            if (childRealisation != null && childRealisation.length() > 0 && !childRealisation.matches("^[\\s\\n]+$")) {
+                char lastChar = childRealisation.charAt(childRealisation.length()-1);
+            	realisation.append(realisedChild.getRealisation());
+
+                if (components.size() > 1 && i < components.size() - 1) {
+                    realisation.append(listSeparator);
+                }
+
+                if (lastChar != '\'') realisation.append(' ');
+            }
+        }
+
+        if (realisation.length() > 0) {
+            realisation.setLength(realisation.length() - 1);
+        }
+    }
 
     private void startSentence(StringBuffer realisation, boolean interrogative) {
         if (interrogative) {
