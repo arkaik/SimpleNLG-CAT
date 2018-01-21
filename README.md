@@ -1,19 +1,19 @@
-SimpleNLG-ES
+SimpleNLG-CAT
 =========
 
-SimpleNLG-ES is a simple Java API designed to facilitate the generation of natural language texts in Spanish. It is a bilingual English/Spanish adaptation of the SimpleNLG v4.4.8 library, following the structure used in SimpleNLG-EnFr. The original SimpleNLG library was developed for the English language in the [Department of Computing Science of the University of Aberdeen](https://www.abdn.ac.uk/ncs/departments/computing-science/natural-language-generation-187.php). SimpleNLG-EnFr is its bilingual English-French adaptation, developed at the [Université de Montreal](http://www-etud.iro.umontreal.ca/~vaudrypl/snlgbil/snlgEnFr_francais.xhtml).
+SimpleNLG-CAT is a simple Java API designed to facilitate the generation of natural language texts in Catalan. It is a trilingual English/Spanish/Catalan adaptation of the SimpleNLG v4.4.8 library, following the structure used in SimpleNLG-EnFr with the addition of the morphophonology module from SimpleNLG-IT. The original SimpleNLG library was developed for the English language in the [Department of Computing Science of the University of Aberdeen](https://www.abdn.ac.uk/ncs/departments/computing-science/natural-language-generation-187.php). SimpleNLG-EnFr is its bilingual English-French adaptation, developed at the [Université de Montreal](http://www-etud.iro.umontreal.ca/~vaudrypl/snlgbil/snlgEnFr_francais.xhtml).
 
-SimpleNLG-ES is designed to facilitate the tasks of linguistic realization in Spanish in natural language generation systems.
+SimpleNLG-CAT is designed to facilitate the tasks of linguistic realization in Catalan in natural language generation systems.
 
 Getting started
 ---------------
-For information on how to use SimpleNLG-ES, see the Wiki and the API.
+For information on how to use SimpleNLG-CAT, see the Wiki and the API.
 
-SimpleNLG-ES License
+SimpleNLG-CAT License
 -----------------------------
-Being based on SimpleNLG and SimpleNLG-EnFr, SimpleNLG-ES is licensed under the terms and conditions of the [Mozilla Public License (MPL) Version 1.1](https://www.mozilla.org/en-US/MPL/1.1/).
+Being based on SimpleNLG and SimpleNLG-EnFr, SimpleNLG-CAT is licensed under the terms and conditions of the [Mozilla Public License (MPL) Version 1.1](https://www.mozilla.org/en-US/MPL/1.1/).
 
-The lexicon used in SimpleNLG-ES is generated from the [FreeLing dictionary](http://nlp.lsi.upc.edu/freeling/) which is licensed under the terms and conditions of the [Lesser General Public License For Linguistic Resources](http://infolingu.univ-mlv.fr/DonneesLinguistiques/Lexiques-Grammaires/lgpllr.html).
+The lexicon used in SimpleNLG-CAT is generated from the [FreeLing dictionary](http://nlp.lsi.upc.edu/freeling/) which is licensed under the terms and conditions of the [Lesser General Public License For Linguistic Resources](http://infolingu.univ-mlv.fr/DonneesLinguistiques/Lexiques-Grammaires/lgpllr.html).
 
 Citation
 --------
